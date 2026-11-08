@@ -66,6 +66,7 @@
 - [实施顺序与实际完成状态](docs/roadmap.md)
 - [Grok 评审与协作说明](docs/grok-handoff.md)
 - [本地目录配置示例](config/workspace.example.json)
+- [统一软件界面原型](prototypes/studio-shell.html)（静态交互设计，未连接实际 2D/3D 后端）
 
 ## 下一次真实落地
 
