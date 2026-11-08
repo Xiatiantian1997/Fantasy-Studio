@@ -1,0 +1,37 @@
+{
+  "schema_version": "workspace-draft-0.1",
+  "product": "Fantasy Studio",
+  "notes": "Planning example only. This file is not loaded by a running orchestrator.",
+  "platform": "windows",
+  "workspace_root": "D:\\AI\\FantasyStudio",
+  "modules": {
+    "2d": {
+      "repository": "Xiatiantian1997/Fantasy-Studio-2D",
+      "subdir": "studio-2d",
+      "dev_api_url": "http://127.0.0.1:7865",
+      "comfyui_url": "http://127.0.0.1:8190",
+      "status": "existing_code_not_gpu_verified"
+    },
+    "3d": {
+      "repository": "Xiatiantian1997/Fantasy-Studio-3D",
+      "subdir": "studio-3d",
+      "export_subdir": "exports",
+      "status": "design_and_schema_only"
+    }
+  },
+  "materials": {
+    "subdir": "materials",
+    "originals": "materials/originals",
+    "curated": "materials/curated",
+    "private": "materials/private"
+  },
+  "outputs": {
+    "images": "outputs",
+    "three_d_exports": "exports"
+  },
+  "security": {
+    "network_default": "loopback",
+    "ai_private_originals_access": false,
+    "upload_private_to_github": false
+  }
+}
