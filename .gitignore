@@ -1,0 +1,29 @@
+# Do not commit local models, private images or runtime data
+runtime/
+downloads/
+cache/
+temp/
+materials/
+outputs/
+exports/
+private/
+*.safetensors
+*.ckpt
+*.pt
+*.pth
+*.blend
+*.blend1
+*.fbx
+*.glb
+*.gltf
+*.exr
+*.sqlite
+*.db
+*.zip
+*.7z
+.env
+__pycache__/
+*.pyc
+.venv/
+# Keep explicit example config, ignore real deployment config
+config/workspace.json
