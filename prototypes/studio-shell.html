@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>幻真画室 · 总控界面原型</title>
+<style>
+:root{--bg:#f6f5f2;--paper:#fff;--ink:#303848;--muted:#78818f;--line:#e6e7eb;--lav:#7f75b6;--lav-soft:#f1effc;--gold:#e5cba1;--shadow:0 8px 35px #515d7d0d}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Microsoft YaHei","Segoe UI",sans-serif;font-size:15px;line-height:1.55}button,input,textarea,select{font:inherit}button{cursor:pointer}
+header{background:#fff;border-bottom:1px solid var(--line);padding:16px max(16px,calc((100vw - 1250px)/2))}header .top{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}h1{margin:0;font-size:21px;letter-spacing:.3px}small,.muted{color:var(--muted)}.brand{display:flex;align-items:center;gap:10px}.logo{background:linear-gradient(140deg,#e7d2b2,#aca6d4);height:40px;width:40px;border-radius:13px;display:grid;place-items:center;color:white;font-size:25px}.sub{font-size:12px;color:var(--muted)}.prototype{border:1px solid #e7ddc9;background:#fff9eb;color:#947242;border-radius:20px;padding:5px 10px;font-size:12px;font-weight:700}
+.layout{max-width:1250px;margin:18px auto;padding:0 16px;display:grid;grid-template-columns:336px minmax(0,1fr);gap:16px}.card{background:var(--paper);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow)}.controls{padding:18px}.preview{padding:15px;min-height:620px}.nav{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;background:#f0f0f4;border-radius:12px;padding:4px;margin:0 0 17px}.nav button{border:0;background:transparent;color:#666e7d;border-radius:9px;padding:9px 3px;font-size:12px;font-weight:650}.nav button.selected{background:white;color:#625ca4;box-shadow:0 2px 7px #0000000a}
+h2{font-size:15px;margin:15px 0 10px}.hint{font-size:12px;color:var(--muted);margin:4px 0 12px}.option-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.option-grid button,.pose-opts button{padding:11px 9px;border:1px solid var(--line);background:#fff;border-radius:11px;text-align:left;color:#525e71;min-height:56px;font-weight:600;font-size:13px}.option-grid button small{font-size:11px;display:block;font-weight:400}.option-grid button.selected,.pose-opts button.selected{background:var(--lav-soft);border-color:#b8b1e8;color:#564c9c}
+label{font-size:13px;font-weight:700;display:block;margin:15px 0 6px}textarea,select,input[type=text]{width:100%;background:#fbfbfd;border:1px solid #dfe2e8;padding:11px 12px;border-radius:10px;outline:none;color:var(--ink)}textarea{min-height:92px;resize:vertical}textarea:focus,select:focus,input:focus{border-color:#a6a0d6}
+.pose-opts{display:grid;grid-template-columns:1fr 1fr;gap:8px}.pose-opts button{min-height:42px}
+.switches{display:flex;gap:7px;flex-wrap:wrap;margin:6px 0 10px}.pill{border:1px solid #dddfe7;background:#fff;border-radius:20px;padding:7px 11px;font-size:12px;color:#646d7e}.pill.selected{background:var(--lav-soft);border-color:#b9b2dd;color:#585295}
+.viewport{height:min(64vh,650px);min-height:390px;background:radial-gradient(ellipse at 55% 26%,#fffcfa,#eff0fc 55%,#ddd9eb);border-radius:15px;position:relative;overflow:hidden;display:grid;place-items:center}.viewport:before{content:"";position:absolute;inset:0;background-image:radial-gradient(#ffffff99 1px,transparent 1px);background-size:22px 22px;opacity:.35}.scene{position:relative;width:min(65%,420px);max-height:92%;filter:drop-shadow(0 22px 19px #5e577a3b)}.scene svg{width:100%;height:auto}.mode-tag{position:absolute;left:16px;top:16px;background:#ffffffc9;border:1px solid #ffffffc7;border-radius:9px;padding:7px 10px;font-size:12px;color:#665c8f;font-weight:700}.not-render{position:absolute;right:13px;bottom:13px;background:#ffffffe6;border-radius:8px;padding:7px 9px;font-size:11px;color:#626e7c}.desc{padding:14px 4px 4px;display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap}.desc h2{font-size:18px;margin:0}.desc p{margin:4px 0;color:var(--muted);font-size:13px}.actions{display:flex;gap:8px;flex-wrap:wrap}.action{border:1px solid #dcdfea;background:#fff;color:#505c76;border-radius:10px;padding:10px 13px;font-weight:650;font-size:13px}.primary{background:#8078b2;color:#fff;border-color:#8078b2}.action:disabled{opacity:.55;cursor:not-allowed}.foot{max-width:1250px;margin:4px auto 26px;padding:0 16px;font-size:12px;color:#8b929c}
+.hide{display:none!important}.status{font-size:12px;padding:9px 11px;background:#f8f8fb;border-radius:10px;color:#666d7c}
+@media(max-width:830px){.layout{grid-template-columns:minmax(0,1fr)}.preview{min-height:auto}.viewport{height:48vh;min-height:340px}.controls{padding:15px}header{padding:13px 15px}}
+@media(max-width:420px){.layout{margin:10px auto;padding:0 9px;gap:10px}.viewport{min-height:290px}.nav button{font-size:11px}h1{font-size:18px}}
+</style>
+</head>
+<body>
+<header><div class="top">
+  <div class="brand"><div class="logo">✧</div><div><h1>幻真画室 <span style="font-size:12px;color:#8c86b4">Fantasy Studio</span></h1><div class="sub">总控界面 · 2D 绘画 · 3D 人体 · 素材与作品</div></div></div>
+  <span class="prototype">交互原型 · 未连接生成后端</span>
+</div></header>
+<div class="layout">
+  <aside class="card controls">
+    <div class="nav" role="tablist" aria-label="主功能">
+      <button class="selected" data-page="2d" aria-selected="true">2D 绘画</button>
+      <button data-page="3d" aria-selected="false">3D 人体</button>
+      <button data-page="assets" aria-selected="false">素材库</button>
+      <button data-page="works" aria-selected="false">作品</button>
+    </div>
+    <section data-section="2d">
+      <h2>想画成什么风格？</h2>
+      <div class="option-grid">
+        <button data-style="幻真动漫" class="selected">幻真动漫<small>立体光影 · 二次元美型</small></button>
+        <button data-style="半写实插画">半写实插画<small>真实体积 · 绘画质感</small></button>
+        <button data-style="数字油画">数字油画<small>笔触色块 · 艺术表现</small></button>
+        <button data-style="真人写真（实验）">真人写真<small>后期实验模式</small></button>
+      </div>
+      <label for="prompt">描述你想要的画面</label>
+      <textarea id="prompt">原创成年幻想角色，华丽花饰礼服，温柔的月光，完整自然的姿势，精致的构图</textarea>
+      <h2>参考什么？</h2><div class="switches"><button class="pill selected" data-ref="人物">人物</button><button class="pill" data-ref="姿势">姿势</button><button class="pill" data-ref="服装">服装</button><button class="pill" data-ref="材质">材质</button></div>
+      <p class="hint">参考功能尚未连接素材库；这里展示未来的操作入口。</p>
+    </section>
+    <section data-section="3d" class="hide">
+      <h2>人体姿势</h2>
+      <p class="hint">未来加载经 Blender 验证的成人角色模型，简单选姿势、转动相机，不需要编辑 Rig。</p>
+      <div class="pose-opts">
+        <button class="selected" data-pose="自然站立">自然站立</button>
+        <button data-pose="侧身回眸">侧身回眸</button>
+        <button data-pose="坐姿">坐姿</button>
+        <button data-pose="双臂上举">双臂上举</button>
+        <button data-pose="跪姿">跪姿</button>
+      </div>
+      <h2>观察方式</h2>
+      <div class="switches"><button class="pill selected" data-view="实体表面">实体表面</button><button class="pill" data-view="骨骼">骨骼</button><button class="pill" data-view="线框">线框</button></div>
+      <p class="status">当前仅为控制界面样本：未加载 GLB，不支持真实旋转或导出深度图。</p>
+    </section>
+    <section data-section="assets" class="hide">
+      <h2>素材检索</h2><p class="hint">以后按用途检索，而不是在上千个文件夹里找图片。</p>
+      <div class="switches"><button class="pill selected" data-asset="画风">画风</button><button class="pill" data-asset="人物">人物</button><button class="pill" data-asset="姿势">姿势</button><button class="pill" data-asset="服装">服装</button><button class="pill" data-asset="材质">材质</button></div>
+      <input type="text" id="asset-keyword" placeholder="例如：坐姿、透明薄纱、胸衣结构">
+      <p class="status">目前未连接 SQLite 素材索引。原图与私人素材将按权限隔离。</p>
+    </section>
+    <section data-section="works" class="hide">
+      <h2>作品管理</h2><p>以后在这里保存生成结果、版本、参考图与完整配方。</p>
+      <p class="status">本原型不会扫描或上传你电脑里的文件，也不代表作品功能已完成。</p>
+    </section>
+  </aside>
+  <main class="card preview">
+    <div class="viewport">
+      <span class="mode-tag" id="preview-badge">2D 绘画 · 幻真动漫</span>
+      <div class="scene" aria-label="静态占位插图，并非模型生成结果">
+        <svg viewBox="0 0 360 580" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="概念人体与服装轮廓示意">
+          <defs><linearGradient id="dress" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#faf1fc"/><stop offset=".5" stop-color="#c4b8e1"/><stop offset="1" stop-color="#7667a2"/></linearGradient><linearGradient id="hair" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#5b497e"/><stop offset="1" stop-color="#c8a6cf"/></linearGradient></defs>
+          <ellipse cx="177" cy="550" rx="130" ry="16" fill="#b4aec0" opacity=".35"/>
+          <path d="M123 156C101 202 97 263 112 324L79 447C150 472 228 474 297 443L244 324C261 255 244 201 217 154Z" fill="url(#hair)" opacity=".88"/>
+          <path d="M155 186L154 234L110 260L96 346Q184 390 272 348L257 258L213 234L204 186Z" fill="#f0d7c7"/>
+          <path d="M140 244C105 252 95 309 99 376L53 523Q178 576 309 524L260 377C269 296 245 255 222 244C193 278 171 280 140 244Z" fill="url(#dress)" stroke="#ffffff" stroke-width="3"/>
+          <path d="M145 277C165 308 202 312 224 278M106 381C169 400 227 397 258 382M90 479C160 499 231 499 279 476" stroke="#fff5da" stroke-width="4" opacity=".8"/>
+          <path d="M134 249L106 277C85 305 77 358 60 405" stroke="#f5dfce" stroke-width="28" stroke-linecap="round"/>
+          <path d="M231 250L266 275C293 302 300 352 303 393" stroke="#f5dfce" stroke-width="27" stroke-linecap="round"/>
+          <path d="M161 169L162 208L206 208L209 167" fill="#efdbd1"/>
+          <path d="M126 76C125 23 231 19 240 91L227 188L116 191Z" fill="url(#hair)"/>
+          <ellipse cx="184" cy="116" rx="50" ry="65" fill="#f5dacb"/>
+          <path d="M131 103C117 67 139 35 187 32C225 30 254 67 241 107C215 88 195 67 193 47C173 72 157 89 131 103Z" fill="url(#hair)"/>
+          <path d="M147 122Q157 117 167 122M201 122Q211 117 221 121" stroke="#625c80" stroke-width="3" stroke-linecap="round"/>
+          <path d="M184 135L183 139M174 154Q184 161 196 154" stroke="#bc8d91" stroke-width="2.4" stroke-linecap="round"/>
+          <path d="M184 217L172 238L184 252L195 238Z" fill="#f3dd9f"/>
+          <circle cx="184" cy="265" r="8" fill="#bc9ede" stroke="#f9ebc9" stroke-width="3"/>
+          <path d="M98 454Q175 421 268 452" stroke="#e8d8ff" stroke-width="8" opacity=".58"/>
+        </svg>
+      </div>
+      <span class="not-render">仅为 SVG 占位插图 · 不是真实生成</span>
+    </div>
+    <div class="desc">
+      <div><h2 id="preview-title">幻真动漫</h2><p id="preview-detail">目前可以修改界面选项并下载配置；生成服务尚未接通。</p></div>
+      <div class="actions">
+        <button class="action" id="export">下载当前设置 JSON</button>
+        <button class="action primary" disabled title="未接入真实后端">开始生成（待接入）</button>
+      </div>
+    </div>
+  </main>
+</div>
+<div class="foot">这是 GitHub 中的独立 HTML 交互原型，不修改现有 v1 生图页面，不访问服务器、不上传素材。</div>
+<script>
+(()=>{"use strict";
+const data={page:"2d",style:"幻真动漫",pose:"自然站立",view:"实体表面",ref:"人物",asset:"画风"};
+const $=(s)=>document.querySelector(s);
+const $$=(s)=>[...document.querySelectorAll(s)];
+function selectIn(group,element){$$(group).forEach(x=>x.classList.toggle("selected",x===element))}
+function render(){
+  $$("[data-section]").forEach(x=>x.classList.toggle("hide",x.dataset.section!==data.page));
+  $$("[data-page]").forEach(x=>{const a=x.dataset.page===data.page;x.classList.toggle("selected",a);x.setAttribute("aria-selected",String(a))});
+  const names={ "2d":"2D 绘画","3d":"3D 人体","assets":"素材库","works":"作品"};
+  const details={ "2d":data.style, "3d":data.pose+" · "+data.view, "assets":data.asset,"works":"本地历史" };
+  $("#preview-badge").textContent=names[data.page]+" · "+details[data.page];
+  $("#preview-title").textContent=details[data.page];
+  $("#preview-detail").textContent=data.page==="2d"?"这是软件操作界面原型；画风设置可保存，实际生成仍需 ComfyUI。":data.page==="3d"?"当前未加载真实人体模型；姿势切换只是界面状态。":"当前只展示导航与配置功能，尚未连接数据。";
+}
+$$("[data-page]").forEach(x=>x.addEventListener("click",()=>{data.page=x.dataset.page;render()}));
+for(const key of ["style","pose","view","ref","asset"]){$$("[data-"+key+"]").forEach(x=>x.addEventListener("click",()=>{data[key]=x.dataset[key];selectIn("[data-"+key+"]",x);render()}))}
+$("#export").addEventListener("click",()=>{
+  const selection={schema_version:"ui-prototype-0.1",...data,prompt:$("#prompt").value,asset_keyword:$("#asset-keyword").value,note:"UI prototype only; not a ComfyUI workflow"};
+  const blob=new Blob([JSON.stringify(selection,null,2)],{type:"application/json"});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement("a");a.href=url;a.download="fantasy-studio-ui-selection.json";document.body.append(a);a.click();a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),1000);
+});
+render();
+})();
+</script>
+</body>
+</html>
