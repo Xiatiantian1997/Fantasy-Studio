@@ -10,7 +10,7 @@
 
 | 仓库 | 负责 | 不负责 |
 | --- | --- | --- |
-| **[Fantasy-Studio-](https://github.com/Xiatiantian1997/Fantasy-Studio-)（本仓库）** | 总体规划、统一界面、启动/编排、共享素材索引、作品历史、2D⇄3D 协议 | 重新实现绘图模型或 Blender |
+| **[Fantasy-Studio](https://github.com/Xiatiantian1997/Fantasy-Studio)（本仓库）** | 总体规划、统一界面、启动/编排、共享素材索引、作品历史、2D⇄3D 协议 | 重新实现绘图模型或 Blender |
 | **[Fantasy-Studio-2D](https://github.com/Xiatiantian1997/Fantasy-Studio-2D)** | ComfyUI 生图、三种绘画风格、图生图/参考控制、局部修改 | 3D 网格、骨骼与真实模型形变 |
 | **[Fantasy-Studio-3D](https://github.com/Xiatiantian1997/Fantasy-Studio-3D)** | 成年人体基模、Rig、姿势、相机、深度/法线/姿态控制图 | 最终 2D 画风与作品管理 |
 
@@ -72,4 +72,3 @@
 
 优先在用户电脑上测试 **2D 现有 ComfyUI 工作流确实出图**；再由本仓库接管统一启动/界面，避免迁移时损坏原来能用的功能。3D 模块继续独立验证模型、Rig 和结构导出，待测试完成再接入总控。
 
-> 仓库当前名为 `Fantasy-Studio-`（末尾带 `-`）。建议以后在 GitHub 设置中改为 **`Fantasy-Studio`**，但这只是命名建议，不影响现有框架，也没有擅自执行重命名。
