@@ -63,6 +63,7 @@
 - [职责与模块边界](docs/responsibilities.md)
 - [2D/3D 协作接口](docs/integration.md)
 - [总体 UI 与体验](docs/product-ux.md)
+- [衣装搭配思路](docs/clothing-plan.md)（三身材、固定姿势、成衣保存与工具分工）
 - [实施顺序与实际完成状态](docs/roadmap.md)
 - [Grok 评审与协作说明](docs/grok-handoff.md)
 - [本地目录配置示例](config/workspace.example.json)
